@@ -1,0 +1,85 @@
+﻿@model ContactDonor.Web.Controllers.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container my-5 py-5 z-depth-1 shadow-sm">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-md-6">
+
+                <!-- Default form login -->
+                <form class="text-center" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger">
+                    </div>
+                    <p class="h4 mb-4">Sign in</p>
+
+                    <!-- Email -->
+                    <input type="email" asp-for="Email" id="defaultLoginFormEmail" class="form-control m-2" placeholder="E-mail">
+                    <span asp-validation-for="Email" class="text-danger d-flex justify-content-start ml-2"></span>
+
+
+                    <!-- Password -->
+                    <input type="password" asp-for="Password" id="defaultLoginFormPassword" class="form-control m-2" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger d-flex justify-content-start ml-2"></span>
+
+
+                    <div class="d-flex justify-content-between m-2">
+                        <div>
+                            <!-- Remember me -->
+                            <div class="custom-control custom-checkbox">
+                                <input asp-for="RememberMe" type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Forgot password -->
+                            <a href="">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Sign in button -->
+                    <button class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
+
+                    <!-- Register -->
+                    <p>
+                        Not a member?
+                        <a asp-controller="Account" asp-action="Register">Register</a>
+                    </p>
+
+                    <!-- Social login -->
+                    <p>or sign in with:</p>
+
+                    <a href="#" class="mx-1" role="button"><i class="fab fa-google"></i></a>
+
+                </form>
+                <!-- Default form login -->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,822 @@
+﻿@model ContactDonor.Web.Controllers.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<div class="container shadow-sm p-3">
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">
+                Available Donors <i class="fa fa-tint" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">
+                Profile <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">
+                Account Settings <i class="fa fa-cog" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3">
+                Access Management <i class="fa fa-shield" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu4">
+                Manage Users <i class="fa fa-users" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active animate__animated animate__fadeIn">
+            <br>
+            <h3>HOME</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+
+            <div class="container" id="data-container"></div>
+
+            <div class="container" id="pagination-container">
+
+            </div>
+        </div>
+        <div id="menu1" class="container tab-pane animate__animated animate__fadeIn">
+            <br>
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="menu2" class="container tab-pane animate__animated animate__fadeIn">
+            <br>
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+        <div id="menu3" class="container tab-pane animate__animated animate__fadeIn">
+            <br>
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                Manage user roles
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <form id="create-role-form" name="create-role-form" method="post" class="mt-3">
+                                <div asp-validation-summary="All" class="text-danger">
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="CreateRoleViewModel.RoleName" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input name="rolename" id="rolename" class="form-control" placeholder="Role name" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary" style="width:auto">
+                                            Add Role
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr />
+                            <p class="lead">All roles</p>
+                            <table class="table table-striped table-bordered animate__animated animate__fadeIn text-center" id="UserRolesDataTable" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Role Id</th>
+                                        <th>Role Name</th>
+                                        <th>Edit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                Manage user claims
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <form id="create-claim-form" name="create-claim-form" method="post" class="mt-3">
+                                <div asp-validation-summary="All" class="text-danger">
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="CreateRoleViewModel.RoleName" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input name="claimname" id="claimname" class="form-control" placeholder="Role name" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary" style="width:auto">
+                                            Add Claim
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr />
+                            <p class="lead">All Claims</p>
+                            <table class="table table-striped table-bordered animate__animated animate__fadeIn text-center" id="UserRolesDataTable" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Claim Id</th>
+                                        <th>Claim Name</th>
+                                        <th>Edit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Collapsible Group Item #3
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="menu4" class="container tab-pane animate__animated animate__fadeIn">
+            <br>
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="container">
+                <table class="table table-striped table-bordered animate__animated animate__fadeIn text-center" style="width:100%" id="UsersDataTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Edit role modal -->
+<!-- The Modal -->
+<div class="modal fade" id="edit_role_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit role</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <form name="edit_role_form" id="edit_role_form">
+                        <input id="edit_role_textbox" class="form-control" type="text" required />
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer" id="add-role-controls">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="userModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Manage user</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body p-4">
+                <div class="container">
+                    <div class="d-flex overflow-auto">
+                        <div>
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h6 class="m-1 mu-name"></h6>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#edit_user_pane">
+                                Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#manage_user_roles">
+                                Manage user roles <i class="fa fa-briefcase" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#manage_user_claims">
+                                Manage user claims <i class="fa fa-file-text" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="edit_user_pane" class="container tab-pane active">
+                            <br>
+                            <h3>HOME</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div id="manage_user_roles" class="container tab-pane fade animate__animated animate__fadeIn">
+
+                            <div class="container m-3">
+                                <p class="lead">Assign role</p>
+                                <button id="my_b">fgfd</button>
+                                <form id="add-role-to-user-form" name="add-role-to-user-form">
+                                    <select id="roles_drop_down" name="roles_drop_down" class="form-control" required>
+                                        <option value=""> -- select -- </option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                                </form>
+                            </div>
+                            <br />
+
+                            <div class="container m-3">
+                                <p class="lead">Existing roles</p>
+                                <div id="user_specific" class="roles-list-container">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="manage_user_claims" class="container tab-pane fade">
+                            <div class="container m-3">
+                                <p class="lead">Assign claim</p>
+                                <form id="add-claim-to-user-form" name="add-claim-to-user-form">
+                                    <select id="claims_drop_down" name="claims_drop_down" class="form-control" required>
+                                        <option value=""> -- select -- </option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                                </form>
+                            </div>
+                            <br />
+
+                            <div class="container m-3">
+                                <p class="lead">Existing claims</p>
+                                <div id="user_specific" class="claims-list-container">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            // function to render available donors.
+            function simpleTemplating(data) {
+                var html = '<ul>';
+                $.each(data, function (index, item) {
+                    html += '<div class="card m-2 animate__animated animate__fadeIn"><div class="card-body">' + item.email + '</div></div>';
+                });
+                html += '</ul>';
+                return html;
+            }
+
+            // function to pagination items
+            $('#pagination-container').pagination({
+                dataSource: '@Url.Action("GetAllUsers", "Dashboard")',
+                pageSize: 5,
+                showGoInput: true,
+                showGoButton: true,
+                totalNumberLocator: function (response) {
+                    // you can return totalNumber by analyzing response content
+                    return response.users.length;
+                },
+                locator:'users',
+                callback: function (data, pagination) {
+                    var html = simpleTemplating(data);
+                    $('#data-container').html(html);
+                }
+            })
+
+            // get users
+            $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetAllUsers", "Dashboard")',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        if (response.status == "SUCCESS") {
+                            donor_users = response.users;
+                            console.log(response.users);
+                        }
+                        else if (response.status == "FAILED") {
+                        }
+                    },
+            });
+
+            // For creating the role.
+            $('#create-role-form').validate({
+                rules: {
+                    rolename: {
+                        required: true
+                    }
+                },
+                messages: {
+                    rolename: {
+                        required: "Rolename required"
+                    }
+                },
+                submitHandler: function (form) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("CreateRole","Dashboard")',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ rolename: $('#rolename').val() }), // serializes the form's elements.
+                        success: function (response) {
+                            if (response.status == "SUCCESS") {
+                                $('#rolename').val(null);
+                                $('#UserRolesDataTable').DataTable().ajax.reload();
+
+                            }
+                            else {
+                                console.log(data.error);
+                            }
+                        }
+                    });
+                }
+            }
+            );
+
+
+            // For creating the claim
+                        $('#create-role-form').validate({
+                rules: {
+                    claimname: {
+                        required: true
+                    }
+                },
+                messages: {
+                    claimname: {
+                        required: "Rolename required"
+                    }
+                },
+                submitHandler: function (form) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("AddClaimToUser", "Dashboard")' + "?claim=" $().val() + "&email=" ,
+                        contentType: 'application/json',
+                        data: JSON.stringify({ rolename: $('#rolename').val() }), // serializes the form's elements.
+                        success: function (response) {
+                            if (response.status == "SUCCESS") {
+                                $('#rolename').val(null);
+                                $('#UserRolesDataTable').DataTable().ajax.reload();
+
+                            }
+                            else {
+                                console.log(data.error);
+                            }
+                        }
+                    });
+                }
+            }
+            );
+
+
+            // For roles datatable.
+            var rolesDataTable = $("#UserRolesDataTable").DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetUserRoles", "Dashboard")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "pagingType": "simple_numbers",
+                "dataSrc": "data",
+                "pageLength": 5,
+                "columns": [
+                    { "data": "id", "name": "id" },
+                    { "data": "name", "name": "name" },
+                    {
+                        "data": "",
+                        "render": function (data) {
+                            return '<i class="fa fa-pencil-square-o edit_role" aria-hidden="true"></i>'
+                        },
+                        "orderable": false
+                    },
+                    {
+                        "data": "",
+                        "orderable": false,
+                        "render": function (data) {
+                            return '<i class="fa fa-trash delete_role" aria-hidden="true"></i>';
+                        }
+                    }
+                ]
+
+            });
+
+
+
+
+            // for displaying users
+            var usersDataTable = $("#UsersDataTable").DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetAllUsers", "Dashboard")",
+                    "type": "GET",
+                    "datatype": "json",
+                    "dataSrc":'users'
+                },
+                "pagingType": "simple_numbers",
+                "pageLength": 5,
+                "columns": [
+                    {
+                        data: "",
+                        render: function (data, type, row) {
+                                return '<input type="checkbox">'
+                        },
+                        orderable: false
+                    },
+                    { "data": "email", "name": "email" },
+                    {
+                        "data": "",
+                        "render": function (data) {
+                            return '<i class="fa fa-ellipsis-v manage_user" aria-hidden="true" data-toggle="modal" data-target="#userModal"></i>'
+                        },
+                        "orderable": false
+                    }
+                ]
+
+            });
+
+
+
+
+
+
+
+
+            // Edit role handler
+            rolesDataTable.on('click', 'i.edit_role', function (e) {
+
+                var roleId;
+                var roleName;
+                var edit_role_modal = $('#edit_role_modal');
+
+                // selected row
+                var selected_row = $(this).closest("tr");
+
+                // get data from the selected row
+                roleId = selected_row.find('td:nth-child(1)').text();
+                roleName = selected_row.find('td:nth-child(2)').text();
+
+                // display the modal and populate the form
+                edit_role_modal.modal('show');
+                $('#edit_role_textbox').val(roleName);
+
+                // Validate the form.
+                $('#edit_role_form').validate({
+
+                    rules: {
+                        edit_role_textbox: {
+                            requried: true
+                        }
+                    },
+                    submitHandler: function () {
+
+                        var updated_role_name = $('#edit_role_textbox').val();
+
+                        $.ajax({
+                            type: "PUT",
+                            url: '@Url.Action("UpdateRole","Dashboard")' + "?roleId=" + roleId,
+                            contentType: 'application/json',
+                            data: JSON.stringify({ rolename: updated_role_name }),
+                            success: function (response) {
+                                console.log(response);
+
+                                if (response.status == "SUCCESS") {
+                                    edit_role_modal.modal('hide');
+                                    $('#UserRolesDataTable').DataTable().ajax.reload();
+                                }
+                                else if (response.status == "FAILED") {
+                                    swal(response.message);
+                                }
+                            },
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+
+            // Delete role handler
+            rolesDataTable.on('click', 'i.delete_role', function (e) {
+
+                var roleId;
+                // selected row
+                var selected_row = $(this).closest("tr");
+
+                // get data from the selected row
+                roleId = selected_row.find('td:nth-child(1)').text();
+
+
+
+
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you cannot undone.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+
+                            $.ajax({
+                                type: "DELETE",
+                                url: '@Url.Action("DeleteRole","Dashboard")' + "?roleId=" + roleId,
+                                contentType: 'application/json',
+                                success: function (response) {
+                                    if (response.status == "SUCCESS") {
+                                        $('#UserRolesDataTable').DataTable().ajax.reload();
+                                        swal("Role has been deleted!", {
+                                            icon: "success",
+                                        });
+                                    }
+                                    else if (response.status == "FAILED") {
+                                        swal(response.message);
+                                    }
+                                },
+                            });
+
+                        }
+                    });
+            });
+
+
+            // search the user functionality..
+            $('#search_user').on('input propertychange paste', function () {
+                // do your stuff
+
+                $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("SearchUser", "Dashboard")' + '?email=' + $('#search_user').val(),
+                        contentType: 'application/json',
+                        beforeSend: function () {
+                            $('#result_user').html('');
+                        },
+                        success: function (response) {
+                            if (response.user != null) {
+                                $('#result_user').html(response.user.email);
+                            }
+                            else {
+                                $('#result_user').html("No user found");
+                            }
+                        }
+                });
+            });
+
+
+            // Manage user.
+            usersDataTable.on('click', 'i.manage_user', function (e) {
+
+                var email;
+                var manage_user_modal = $('#userModal');
+
+                // selected row
+                var selected_row = $(this).closest("tr");
+
+                // get data from the selected row
+                email = selected_row.find('td:nth-child(2)').text();
+
+                // display the modal and populate the form
+                manage_user_modal.modal('show');
+                $('.mu-name').text(email);
+                console.log(email);
+
+                // get all user roles for drop down list binding...
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetUserRoles", "Dashboard")",
+                    dataType: "json",
+                    contentType: "application/json",
+                    beforeSend: function () {
+                        $("#roles_drop_down").empty();
+                    },
+                    success: function (res) {
+                        $("#roles_drop_down").append($("<option></option>").val('').html(' -- select --'));
+                        $.each(res.data, function (data, value) {
+                            $("#roles_drop_down").append($("<option></option>").val(value.id).html(value.name));
+                        })
+                    }
+                });
+
+
+
+                // get specific user roles..
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetAllUserRoles", "Dashboard")" + "?email=" + email,
+                    dataType: "json",
+                    contentType: "application/json",
+                    beforeSend: function () {
+                    },
+                    success: function (response) {
+
+                        var html = GetUserRolesItem(response.roles);
+                        $('.roles-list-container').html(html);
+
+                    }
+                });
+
+                // get specific user claims
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetUserClaims", "Dashboard")" + "?email=" + email,
+                    dataType: "json",
+                    contentType: "application/json",
+                    beforeSend: function () {
+                    },
+                    success: function (response) {
+
+                        var html = GetUserRolesItem(response.userclaims);
+                        $('.claims-list-container').html(html);
+
+                    }
+                });
+
+
+                // function to display user already existing claims..
+                function GetUserRolesItem(data) {
+                    console.log(data);
+                    var html = '<ul class="list-group">';
+                    $.each(data, function (index, item) {
+                        html += '<li class="list-group-item">' + item + '</li>';
+                    });
+                    html += '</ul>';
+                    return html;
+                }
+
+
+                // function to display user already existing roles..
+                function GetUserRolesItem(data) {
+                    console.log(data);
+                    var html = '<ul class="list-group">';
+                    $.each(data, function (index, item) {
+                        html += '<li class="list-group-item">' + item + '</li>';
+                    });
+                    html += '</ul>';
+                    return html;
+                }
+
+
+                $('#add-role-to-user-form').validate({
+
+                    rules: {
+                        roles_drop_down: {
+                            required:true
+                        }
+                    },
+                    submitHandler: function () {
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("AddUserToRole", "Dashboard")' + "?roleid=" + $('#roles_drop_down').val() + "&email=" + email,
+                            contentType: 'application/json',
+                            success: function (response) {
+                                if (response.status == "SUCCESS") {
+
+
+
+                                }
+                                else {
+                                    console.log(response.error);
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+
+                $('#add-claim-to-user-form').validate({
+
+                    rules: {
+                        claims_drop_down: {
+                            required:true
+                        }
+                    },
+                    submitHandler: function () {
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("AddClaimToUser", "Dashboard")' + "?claim=" + $('#claims_drop_down').val() + "&email=" + email,
+                            contentType: 'application/json',
+                            success: function (response) {
+                                if (response.status == "SUCCESS") {
+
+
+
+                                }
+                                else {
+                                    console.log(response.error);
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+
+
+
+            });
+
+
+
+            //
+            $('#my_b').on('click', function () {
+                var params = $.extend({}, doAjax_params_default);
+                params['url'] = `@Url.Action("GetUserRoles", "Dashboard")`;
+                params['successCallbackFunction'] = function (res) {
+                    $.each(res.data, function (data, value) {
+                        console.log(value.name);
+                    })
+                };
+                doAjax(params);
+            });
+
+        });
+    </script>
+} 
